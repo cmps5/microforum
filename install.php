@@ -32,4 +32,22 @@ $engine->execute();
 
 echo "<p>Table 'users' created successfully</p><hr>";
 
+// posts table
+$sql = "CREATE TABLE IF NOT EXISTS posts(
+    id_post INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL,
+    title VARCHAR(100),
+    content TEXT,
+    post_date DATETIME,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
+)";
+
+$engine = $connection->prepare($sql);
+$engine->execute();
+
+$connection = null;
+
+echo "<p>Table 'posts' created successfully</p><hr>";
+echo "<p>Database installation completed successfully.</p>";
+
 ?>
