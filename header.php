@@ -2,7 +2,7 @@
 
 echo '
     <!DOCTYPE html>
-    <html lang="pt">
+    <html lang="en">
         <head>
             <meta charset="UTF-8">
             <title>Micro Forum</title>
