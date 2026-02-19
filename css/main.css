@@ -1,34 +1,40 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-
-body {
-    font-family: Tahoma, Arial, sans-serif;
-    font-size: 11px;
-    background: #EEEEEE;
+    box-sizing: border-box;
 }
 
 .forum_container {
-    margin: 20px auto;
+    margin: 20px auto auto auto;
     padding: 20px;
+    width: 1000px;
+    max-width: 95%;
+    font: 11pt Tahoma;
+    background-color: rgb(220, 220, 220);
     text-align: left;
     border: 1px solid black;
     border-radius: 10px;
 }
 
 .footer {
-    margin: 20px auto;
+    margin: 3px auto auto auto;
     padding: 20px;
+    width: 1000px;
+    max-width: 95%;
+    font: 0.7em Tahoma;
     background-color: black;
     color: white;
     text-align: center;
     border-radius: 10px;
 }
 
-.forum_container,
-.footer {
-    max-width: 1000px;
-    width: 95%;
+.form_login {
+   width: 400px;
+   max-width: 90%;
+   border: 1px solid black;
+   margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
