@@ -28,7 +28,7 @@
     border-radius: 10px;
 }
 
-.form_login {
+.form_login, .form_signup {
    width: 400px;
    max-width: 90%;
    border: 1px solid black;
@@ -38,30 +38,30 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-.form_login h3 {
+.form_login h3, .form_signup h3 {
     text-align: center;
     margin-bottom: 20px;
 }
-.form_login hr{
+.form_login hr, .form_signup hr {
     margin-bottom: 20px;
 }
-.form_login p {
+.form_login p, .form_signup p {
     font-size: 1em;
     margin-bottom: 15px;
 }
-.form_login label{
+.form_login label, .form_signup label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
 }
-.form_login input{
+.form_login input, .form_signup input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-.form_login button {
+.form_login button, .form_signup button {
     width: 100%;
     padding: 10px;
     margin-top: 15px;
@@ -73,14 +73,14 @@
     cursor: pointer;
     background-transition: background-color 0.3s ease;
 }
-.form_login button:hover {
+.form_login button:hover, .form_signup button:hover {
     background-color: #555;
 }
-.form_login a {
+.form_login a, .form_signup a {
     color: #06c;
     text-decoration: none;
 }
-.form_login a:hover {
+.form_login a:hover, .form_signup a:hover {
     text-decoration: underline;
 }
 .message{
