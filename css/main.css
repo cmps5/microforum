@@ -83,3 +83,14 @@
 .form_login a:hover {
     text-decoration: underline;
 }
+.message{
+    width: 400px;
+    max-width: 90%;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: #e7f3ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+    border-radius: 5px;
+    text-align: center;
+}
