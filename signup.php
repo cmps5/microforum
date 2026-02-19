@@ -38,3 +38,60 @@ function DisplayForm()
     </form>
 HTML;
 }
+
+function ResgisterUser()
+{
+    $username = trim($_POST['text_user']);
+    $password = $_POST['text_password'];
+    $password_confirm = $_POST['text_password_confirm'];
+    $avatar = $_FILES['file_avatar'];
+
+    $error = false;
+    $maxSize = 50000;
+    $avatarPath = null;
+
+    // Validate input fields
+    if ($username === "" || $password === "" || $password_confirm === "") {
+        echo "
+            <div class='error'>
+                All fields are required. Please fill in all fields.
+            </div>
+        ";
+        $error = true;
+    }
+    // Validate password confirmation 
+    else if ($password !== $password_confirm) {
+        echo "
+            <div class='error'>
+                Passwords do not match. Please try again.
+            </div>
+        ";
+        $error = true;
+    }
+
+    // Validate avatar file if provided
+    if ($avatar['name'] != "") {
+        $ext = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
+
+        if ($ext !== "jpg" && $ext !== "jpeg") {
+            echo "
+                <div class='error'>
+                    Invalid avatar format. Only JPG and JPEG are allowed.
+                </div>
+            ";
+            $error = true;
+        } else if ($avatar['size'] > $maxSize) {
+            echo "
+                <div class='error'>
+                    Avatar file size exceeds the maximum limit of 50KB.
+                </div>
+            ";
+            $error = true;
+        }
+    }
+
+    if ($error) {
+        DisplayForm();
+        return;
+    }
+}
