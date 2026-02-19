@@ -38,3 +38,48 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+.form_login h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form_login hr{
+    margin-bottom: 20px;
+}
+.form_login p {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+.form_login label{
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.form_login input{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form_login button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-transition: background-color 0.3s ease;
+}
+.form_login button:hover {
+    background-color: #555;
+}
+.form_login a {
+    color: #06c;
+    text-decoration: none;
+}
+.form_login a:hover {
+    text-decoration: underline;
+}
