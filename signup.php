@@ -23,15 +23,15 @@ function DisplayForm()
         <p>To create a new account, please fill in the form below.</p>
 
         <label>Username:</label>
-        <input type="text" id="text_user" name="text_user" required>
+        <input type="text" id="text_user" name="text_user" placeholder="Enter your username" required>
 
         <label>Password:</label>
-        <input type="password" id="text_password" name="text_password" required>
+        <input type="password" id="text_password" name="text_password" placeholder="Enter your password" required>
 
         <label>Confirm Password:</label>
-        <input type="password" id="text_password_confirm" name="text_password_confirm" required>
+        <input type="password" id="text_password_confirm" name="text_password_confirm" placeholder="Confirm your password" required>
 
-        <label> Avaatar (optional):</label>
+        <label> Avatar (optional):</label>
         <input type="file" id="file_avatar" name="file_avatar" accept=".jpg, .jpeg">
 
         <button type="submit" name="btn_signup" class="btn_signup">Sign Up</button>
