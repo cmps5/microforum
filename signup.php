@@ -50,7 +50,7 @@ function ResgisterUser()
 
     $error = false;
     $maxSize = 50000;
-    $avatarPath = null;
+    $avatarName = null;
 
     // Validate input fields
     if ($username === "" || $password === "" || $password_confirm === "") {
@@ -98,18 +98,20 @@ function ResgisterUser()
     }
 
     include "config.php";
+
     $connection = new PDO(
-        "mysql:host=$host",
+        "mysql:host=$host;dbname=$data_base;charset=utf8",
         $user,
         $db_password,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
     // Check if username already exists
-    $motor = $connection->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
-    $motor->execute([$username]);
+    $engine = $connection->prepare("SELECT * FROM users WHERE username = :username");
+    $engine->bindParam(':username', $username);
+    $engine->execute();
 
-    if ($motor->rowCount() > 0) {
+    if ($engine->rowCount() > 0) {
         echo "
             <div class='error'>
                 Username already exists. Please choose a different username.
@@ -118,4 +120,30 @@ function ResgisterUser()
         DisplayForm();
         return;
     }
+
+    // Handle avatar upload if provided
+    if ($avatar['name'] != "") {
+        $avatarName = uniqid() . ".jpg";
+        move_uploaded_file($avatar['tmp_name'], 'img/avatar/' . $avatarName);
+    }
+
+    // Hash the password before storing it in the database
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert new user into the database
+    $sql = "INSERT INTO users (username, password, avatar) VALUES (:username, :password, :avatar)";
+    $engine = $connection->prepare($sql);
+    $engine->bindParam(':username', $username);
+    $engine->bindParam(':password', $hashedPassword);
+    $engine->bindParam(':avatar', $avatarName);
+    $engine->execute();
+
+    $connection = null;
+
+    echo "
+        <div class='success'>
+            Welcome to the forum, <strong>'.$username.'</strong>!<br><br>
+            You can now <a href='index.php'>log in</a> to your account.
+        </div>
+        ";
 }
