@@ -99,58 +99,69 @@ function ResgisterUser()
 
     include "config.php";
 
-    $connection = new PDO(
-        "mysql:host=$host;dbname=$data_base;charset=utf8",
-        $user,
-        $db_password,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    try {
+        $connection = new PDO(
+            "mysql:host=$host;dbname=$data_base;charset=utf8",
+            $user,
+            $db_password,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
 
-    // Check if username already exists
-    $engine = $connection->prepare("SELECT * FROM users WHERE username = :username");
-    $engine->bindParam(':username', $username);
-    $engine->execute();
+        // Check if username already exists
+        $engine = $connection->prepare("SELECT * FROM users WHERE username = :username");
+        $engine->bindParam(':username', $username);
+        $engine->execute();
 
-    if ($engine->rowCount() > 0) {
-        echo "
+        if ($engine->rowCount() > 0) {
+            echo "
             <div class='error'>
                 Username already exists. Please choose a different username.
             </div>
         ";
-        DisplayForm();
-        return;
-    }
+            DisplayForm();
+            return;
+        }
 
-    // Handle avatar upload if provided
+        // Handle avatar upload if provided
 
-    $dir = 'img/avatar/';
+        $dir = 'img/avatar/';
 
-    if (!is_dir($dir)) {
-        mkdir($dir, 0755, true);
-    }
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
 
-    if ($avatar['name'] != "") {
-        $avatarName = uniqid() . ".jpg";
-        move_uploaded_file($avatar['tmp_name'], 'img/avatar/' . $avatarName);
-    }
+        if ($avatar['name'] != "") {
+            $avatarName = uniqid() . ".jpg";
+            move_uploaded_file($avatar['tmp_name'], 'img/avatar/' . $avatarName);
+        }
 
-    // Hash the password before storing it in the database
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        // Hash the password before storing it in the database
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert new user into the database
-    $sql = "INSERT INTO users (username, password, avatar) VALUES (:username, :password, :avatar)";
-    $engine = $connection->prepare($sql);
-    $engine->bindParam(':username', $username);
-    $engine->bindParam(':password', $hashedPassword);
-    $engine->bindParam(':avatar', $avatarName);
-    $engine->execute();
+        // Insert new user into the database
+        $sql = "INSERT INTO users (username, password, avatar) VALUES (:username, :password, :avatar)";
+        $engine = $connection->prepare($sql);
+        $engine->bindParam(':username', $username);
+        $engine->bindParam(':password', $hashedPassword);
+        $engine->bindParam(':avatar', $avatarName);
+        $engine->execute();
 
-    $connection = null;
+        $connection = null;
 
-    echo "
+        echo "
         <div class='success'>
             Welcome to the forum, <strong>'$username'</strong>!<br><br>
             You can now <a href='index.php'>log in</a> to your account.
         </div>
         ";
+    } catch (PDOException $e) {
+        echo '
+            <div class="error">
+                Database error connecting to the database.<br>
+                Go back to <a href="index.php">login</a>.
+            </div>
+        ';
+        include 'footer.php';
+        exit();
+    }
 }
