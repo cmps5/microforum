@@ -94,4 +94,26 @@ function ResgisterUser()
         DisplayForm();
         return;
     }
+
+    include "config.php";
+    $connection = new PDO(
+        "mysql:host=$host",
+        $user,
+        $db_password,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
+    // Check if username already exists
+    $motor = $connection->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+    $motor->execute([$username]);
+
+    if ($motor->rowCount() > 0) {
+        echo "
+            <div class='error'>
+                Username already exists. Please choose a different username.
+            </div>
+        ";
+        DisplayForm();
+        return;
+    }
 }
