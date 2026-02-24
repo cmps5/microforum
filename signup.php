@@ -122,6 +122,13 @@ function ResgisterUser()
     }
 
     // Handle avatar upload if provided
+
+    $dir = 'img/avatar/';
+
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+
     if ($avatar['name'] != "") {
         $avatarName = uniqid() . ".jpg";
         move_uploaded_file($avatar['tmp_name'], 'img/avatar/' . $avatarName);
@@ -142,7 +149,7 @@ function ResgisterUser()
 
     echo "
         <div class='success'>
-            Welcome to the forum, <strong>'.$username.'</strong>!<br><br>
+            Welcome to the forum, <strong>'$username'</strong>!<br><br>
             You can now <a href='index.php'>log in</a> to your account.
         </div>
         ";
