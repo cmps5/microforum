@@ -94,3 +94,27 @@
     border-radius: 5px;
     text-align: center;
 }
+
+.success {
+    width: 400px;
+    max-width: 90%;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: #ddffdd;
+    color: #155724;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.error {
+    width: 400px;
+    max-width: 90%;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: #ffdddd;
+    color: #990000;
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+    text-align: center;
+}
