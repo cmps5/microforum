@@ -64,7 +64,7 @@ if (isset($_GET['pid']) && is_numeric($_GET['pid'])) {
 }
 
 // user data
-$sessionAvatar = $_SESSION['avatar'] ? $_SESSION['avatar'] : 'default_avatar.jpg';
+$sessionAvatar = $_SESSION['avatar'] ? $_SESSION['avatar'] : 'default-avatar.png';
 $sessionUser = htmlspecialchars($_SESSION['user']);
 
 echo '
