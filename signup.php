@@ -127,7 +127,7 @@ function ResgisterUser()
         $dir = 'img/avatar/';
 
         if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
+            mkdir($dir, 777, true);
         }
 
         if ($avatar['name'] != "") {
