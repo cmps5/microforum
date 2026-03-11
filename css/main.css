@@ -161,3 +161,37 @@
     color: yellow;
     text-decoration: underline;
 }
+
+.post_form{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.post_form input[type="text"], .post_form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: tahoma, arial, sans-serif;
+}
+
+.post_form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.post_form input[type="submit"] {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.post_form input[type="submit"]:hover {
+    background-color: #444;
+}
+
