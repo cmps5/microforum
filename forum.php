@@ -69,7 +69,33 @@ try {
                 No posts found.
             </div>
         ';
+    } else {
+        foreach ($posts as $post) {
+            $id_post = $post['id_post'];
+            $id_user = $post['id_user'];
+            $title = htmlspecialchars($post['title']);
+            $content = nl2br(htmlspecialchars($post['content']));
+            $post_date = date("F j, Y, g:i a", strtotime($post['post_date']));
+            $user_name = htmlspecialchars($post['username']);
+            $avatar = $post['avatar'] ? $post['avatar'] : 'default_avatar.jpg';
+
+            echo '<div class="post">';
+            echo '<img src="img/avatar/' . $avatar . '" alt="Avatar">';
+            echo '<div class="post_content">';
+            echo '<span class="post_user">' . $user_name . '</span>';
+            echo '<span class="post_title">' . $title . '</span>';
+            echo '<div class="post_text">' . $content . '</div>';
+            echo '<div class="post_date">' . $post_date . '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
     }
 } catch (PDOException $e) {
-    
+    echo '
+        <div class="error">
+            Error accessing the database.
+        </div>
+    ';
 }
+
+include 'footer.php';
