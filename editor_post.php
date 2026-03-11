@@ -19,20 +19,15 @@ include 'header.php';
 $pid = -1;
 $editor = false;
 $title = "";
-$content = ""; 
+$content = "";
 
-if(isset($_GET['pid']) && is_numeric($_GET['pid'])){
+if (isset($_GET['pid']) && is_numeric($_GET['pid'])) {
     $pid = (int)$_GET['pid'];
     $editor = true;
 
     include 'config.php';
 
-        $connection = new PDO(
-            "mysql:host=$host;dbname=$data_base;charset=utf-8",
-            $user,
-            $db_password,
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-        );
+    $connection = new PDO("mysql:host=$host;dbname=$data_base;charset=utf8", $user, $db_password);
 
     $sql = "SELECT id_user, title, content FROM posts WHERE id_post = ?";
 
@@ -42,7 +37,7 @@ if(isset($_GET['pid']) && is_numeric($_GET['pid'])){
 
     $data = $engine->fetch(PDO::FETCH_ASSOC);
 
-    if(!$data){
+    if (!$data) {
         echo '
             <div class="error">
                 Post not found.<br>
@@ -52,7 +47,7 @@ if(isset($_GET['pid']) && is_numeric($_GET['pid'])){
         exit();
     }
 
-    if($data['id_user'] != $_SESSION['id_user']){
+    if ($data['id_user'] != $_SESSION['id_user']) {
         echo '
             <div class="error">
                 Permission denied.<br>
