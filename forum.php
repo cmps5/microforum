@@ -17,7 +17,7 @@ if (!isset($_SESSION['user'])) {
 include 'header.php';
 
 //user data
-$sessionAvatar = $_SESSION['avatar'] ? $_SESSION['avatar'] : 'default_avatar.jpg';
+$sessionAvatar = $_SESSION['avatar'] ? $_SESSION['avatar'] : 'default-avatar.png';
 $sessionUser = htmlspecialchars($_SESSION['user']);
 
 echo '
@@ -77,7 +77,7 @@ try {
             $content = nl2br(htmlspecialchars($post['content']));
             $post_date = date("F j, Y, g:i a", strtotime($post['post_date']));
             $user_name = htmlspecialchars($post['username']);
-            $avatar = $post['avatar'] ? $post['avatar'] : 'default_avatar.jpg';
+            $avatar = $post['avatar'] ? $post['avatar'] : 'default-avatar.png';
 
             echo '<div class="post">';
             echo '<img src="img/avatar/' . $avatar . '" alt="Avatar">';
