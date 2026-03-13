@@ -70,7 +70,7 @@ microforum/
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/cmps5/microforum.git
+git clone <repository-url>
 cd microforum 
 ```
 
